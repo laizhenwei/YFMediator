@@ -1,0 +1,2 @@
+language: objective-c
+script: xcodebuild -project YFMediatorDemo.xcodeproj -scheme YFMediatorDemo -destination 'platform=iOS Simulator,name=iPhone 6' build
