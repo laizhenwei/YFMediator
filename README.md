@@ -89,6 +89,8 @@ YFMediator 封装页面常用的跳转方法，所有逻辑都是基于 UINaviga
 
 如果你传递的参数是 `ViewController` 中的一个属性，那么 `YFMediator` 会自动帮你赋值，赋值的方式是调用属性的 `set` 方法。
 
+* 注意：如果你是自定义创建的 `ViewController`，那么 `YFMediator` 将不会给它赋值，具体见[下文](#自定义创建-viewcontroller)。
+
 ```objc
 @interface ViewController : UIViewController
 
