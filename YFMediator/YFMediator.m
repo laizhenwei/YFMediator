@@ -48,17 +48,34 @@
 
 - (void)intercept:(YFMediatorIntercept)option handler:(YFMediatorInterceptHandlerBlock)handler {
     if (!handler) return;
-#define YFMediatorInterceptBinding(__option__) \
-if (option == __option__) self.intercepts[@#__option__] = handler;
+    #define YFMediatorInterceptBinding(__option__) \
+    if (option == __option__) self.intercepts[@#__option__] = handler;
+    
     YFMediatorInterceptBinding(YFMediatorInterceptBeforeInit)
     YFMediatorInterceptBinding(YFMediatorInterceptBeforeSetValue)
     YFMediatorInterceptBinding(YFMediatorInterceptAfterInit)
-#undef YFMediatorInterceptBinding
+    
+    #undef YFMediatorInterceptBinding
 }
 
 #pragma mark - 获取 viewController
-- (UIViewController *)rootViewController {
-    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+- (UIViewController *)visiableController {
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    if (window.windowLevel != UIWindowLevelNormal) {
+        for (UIWindow *tmp in [UIApplication sharedApplication].windows) {
+            if (tmp.windowLevel == UIWindowLevelNormal) {
+                window = tmp;
+                break;
+            }
+        }
+    }
+    
+    UIView *front = window.subviews[0];
+    id nextResponder = front.nextResponder;
+    if ([nextResponder isKindOfClass:[UIViewController class]]) {
+        return nextResponder;
+    }
+    UIViewController *vc = window.rootViewController;
     while (vc.presentedViewController) {
         vc = vc.presentedViewController;
     }
@@ -66,14 +83,14 @@ if (option == __option__) self.intercepts[@#__option__] = handler;
 }
 
 - (UIViewController *)currentViewController {
-    id vc = [self rootViewController];
+    id vc = [self visiableController];
     if ([vc isKindOfClass:[UITabBarController class]]) vc = [(UITabBarController *)vc selectedViewController];
     if ([vc isKindOfClass:[UINavigationController class]]) vc = [(UINavigationController *)vc topViewController];
     return vc;
 }
 
 - (UINavigationController *)currentNavigationController {
-    id vc = [self rootViewController];
+    id vc = [self visiableController];
     if ([vc isKindOfClass:[UITabBarController class]]) vc = [(UITabBarController *)vc selectedViewController];
     if ([vc isKindOfClass:[UINavigationController class]]) return vc;
     return nil;
@@ -85,12 +102,12 @@ if (option == __option__) self.intercepts[@#__option__] = handler;
 }
 
 - (UIViewController *)viewController:(NSString *)viewController params:(NSDictionary *)params {
-#define YFMediatorInterceptOperation(__option__, __vc__) \
-if (self.intercepts[@#__option__]) { \
-    YFMediatorInterceptHandlerBlock handler = self.intercepts[@#__option__]; \
-    BOOL flag = handler(__vc__, newParams); \
-    if (!flag) return nil; \
-}
+    #define YFMediatorInterceptOperation(__option__, __vc__) \
+    if (self.intercepts[@#__option__]) { \
+        YFMediatorInterceptHandlerBlock handler = self.intercepts[@#__option__]; \
+        BOOL flag = handler(__vc__, newParams); \
+        if (!flag) return nil; \
+    }
     if (viewController.length <= 0) return nil;
     NSString *class = self.controllers[viewController];
     if (!class) class = viewController;
@@ -115,7 +132,7 @@ if (self.intercepts[@#__option__]) { \
     }
     YFMediatorInterceptOperation(YFMediatorInterceptAfterInit, vc)
     return vc;
-#undef YFMediatorInterceptOperation
+    #undef YFMediatorInterceptOperation
 }
 
 #pragma mark - Push 跳转
