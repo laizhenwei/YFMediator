@@ -18,7 +18,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [[YFMediator shared] intercept:YFMediatorInterceptAfterInit handler:^BOOL(UIViewController *vc, NSMutableDictionary *params) {
+    [[YFMediator shared] intercept:YFMediatorInterceptNotFound handler:^BOOL(id *viewController, NSMutableDictionary *params) {
+        *viewController = @"ViewController5";
+        return YES;
+    }];
+    
+    [[YFMediator shared] intercept:YFMediatorInterceptAfterInit handler:^BOOL(id *viewController, NSMutableDictionary *params) {
+        UIViewController *vc = *viewController;
         vc.view.backgroundColor = [UIColor colorWithRed:random() % 255 / 255.0 green:random() % 255 / 255.0 blue:random() % 255 / 255.0 alpha:1];
         
         vc.title = NSStringFromClass(vc.class);

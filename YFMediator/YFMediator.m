@@ -8,6 +8,7 @@
 
 #import "YFMediator.h"
 #import <objc/message.h>
+#import <YFRouter.h>
 
 @interface YFMediator ()
 @property (nonatomic, strong, readwrite) NSMutableDictionary *controllers;
@@ -31,15 +32,22 @@
 - (void)mapURL:(NSString *)url toViewController:(NSString *)viewController {
     if (url.length <= 0 || viewController.length <= 0) return;
     self.controllers[url] = viewController;
+    [YFRouter registerURL:url object:viewController];
 }
 
 - (void)addMapping:(NSDictionary *)mapping {
     if (!mapping) return;
     [self.controllers addEntriesFromDictionary:mapping];
+    for (NSString *key in mapping) {
+        [YFRouter registerURL:key object:mapping[key]];
+    }
 }
 
 - (void)removeURL:(NSString *)url {
-    if (self.controllers[url]) [self.controllers removeObjectForKey:url];
+    if (self.controllers[url]) {
+        [self.controllers removeObjectForKey:url];
+    }
+    [YFRouter unregisterURL:url];
 }
 
 - (void)registerNavigationController:(Class)navigationClass {
@@ -51,6 +59,7 @@
     #define YFMediatorInterceptBinding(__option__) \
     if (option == __option__) self.intercepts[@#__option__] = handler;
     
+    YFMediatorInterceptBinding(YFMediatorInterceptNotFound)
     YFMediatorInterceptBinding(YFMediatorInterceptBeforeInit)
     YFMediatorInterceptBinding(YFMediatorInterceptBeforeSetValue)
     YFMediatorInterceptBinding(YFMediatorInterceptAfterInit)
@@ -105,20 +114,42 @@
     #define YFMediatorInterceptOperation(__option__, __vc__) \
     if (self.intercepts[@#__option__]) { \
         YFMediatorInterceptHandlerBlock handler = self.intercepts[@#__option__]; \
-        BOOL flag = handler(__vc__, newParams); \
+        BOOL flag = handler(&__vc__, newParams); \
         if (!flag) return nil; \
     }
+
     if (viewController.length <= 0) return nil;
-    NSString *class = self.controllers[viewController];
-    if (!class) class = viewController;
+    
     NSMutableDictionary *newParams = [params mutableCopy];
-    YFMediatorInterceptOperation(YFMediatorInterceptBeforeInit, class)
-    Class vcClass = NSClassFromString(class);
+    Class clazz;
+    
+    YFMediatorInterceptOperation(YFMediatorInterceptBeforeInit, viewController)
+    
+    BOOL stop = NO;
+    do {
+        clazz = NSClassFromString(viewController);
+        if (clazz) break;
+        YFObject *object = [YFRouter objectForRoute:viewController params:nil];
+        NSString *newClass = object.value;
+        clazz = NSClassFromString(newClass);
+        if (clazz) {
+            [newParams addEntriesFromDictionary:object.params];
+            [newParams removeObjectsForKeys:@[YFRouterPathKey, YFRouterSchemeKey, YFRouterURLKey]];
+            break;
+        }
+        if (!stop && self.intercepts[@"YFMediatorInterceptNotFound"]) {
+            YFMediatorInterceptOperation(YFMediatorInterceptNotFound, viewController)
+            stop = YES;
+        } else {
+            return nil;
+        }
+    } while (1);
+    
     id vc;
-    if ([vcClass instancesRespondToSelector:@selector(initWithParams:)]) {
-        vc = [[vcClass alloc] initWithParams:[newParams copy]];
+    if ([clazz instancesRespondToSelector:@selector(initWithParams:)]) {
+        vc = [[clazz alloc] initWithParams:[newParams copy]];
     } else {
-        vc = [[vcClass alloc] init];
+        vc = [[clazz alloc] init];
         if (newParams && [vc respondsToSelector:@selector(setParams:)]) {
             YFMediatorInterceptOperation(YFMediatorInterceptBeforeSetValue, vc)
             [vc setParams:[newParams copy]];

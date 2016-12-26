@@ -10,7 +10,7 @@ YFMediator iOS 组件化中间件，新时代的解耦神器 ！
 
 ## Usage
 
-YFMediator 封装页面常用的跳转方法，所有逻辑都是基于 UINavigationController
+YFMediator 封装页面常用的跳转方法，基于 UINavigationController
 
 ### 设置 NavigationController
 
@@ -107,40 +107,41 @@ YFMediator 封装页面常用的跳转方法，所有逻辑都是基于 UINaviga
 ### 短链映射（URL 绑定）
 
 ```objc
-/**
- 绑定 ViewController 和 短链
- 短链是一种 Key 的形式
- eg. [YFMediator mapURL:@"login" toViewController:LoginViewController];
- 如果需要使用 URL 传参数
- eg. /login?name=123&pwd=123 这种形式请结合使用 [YFRouter](https://github.com/laichanwai/YFRouter)
+@interface YFMediator (YFRouter)
 
+/**
+ 绑定 ViewController 和 URL
+ eg. [YFMediator mapURL:@"login" toViewController:LoginViewController];
+     [YFMediator push:@"login?user=laizw&password=123123"];
+ 
  @param url 短链
  @param viewController ViewController
  */
 - (void)mapURL:(NSString *)url toViewController:(NSString *)viewController;
 
 /**
-  eg. @{
-        @"user/info" : @"UserInfoViewController",
-        @"login"     : @"LoginViewController"
-        ...
-      }
-
+ eg. 
+ @{
+   @"user/info" : @"UserInfoViewController",
+   @"login"     : @"LoginViewController"
+   ...
+ }
+ 
  @param mapping mapping
  */
 - (void)addMapping:(NSDictionary *)mapping;
 
 /**
  删除短链
-
+ 
  @param url 短链
  */
 - (void)removeURL:(NSString *)url;
+
+@end
 ```
 
 ![2016121738971Map.gif](http://7xlykq.com1.z0.glb.clouddn.com/2016121738971Map.gif)
-
-##### 强烈建议配合 [YFRouter](https://github.com/laichanwai/YFRouter) 使用 ！！
 
 ### 创建 ViewController
 
@@ -186,16 +187,18 @@ YFMediator 封装页面常用的跳转方法，所有逻辑都是基于 UINaviga
 3. 如果你不想创建这个 `ViewController` 只需要 `return NO`，那么就会终止创建这个 `ViewController` 并且返回 `nil`，默认通过的话请返回 `YES`。
 
 ```objc
-typedef BOOL(^YFMediatorInterceptHandlerBlock)(id viewController, NSMutableDictionary *params);
+typedef BOOL(^YFMediatorInterceptHandlerBlock)(id *viewController, NSMutableDictionary *params);
 
 typedef enum : NSUInteger {
-    YFMediatorInterceptBeforeInit,      // handler(className, params)
+    YFMediatorInterceptNotFound,        // handler(className | URL, params)
+    YFMediatorInterceptBeforeInit,      // handler(className | URL, params)
     YFMediatorInterceptBeforeSetValue,  // handler(viewController, params)，不会拦截实现 YFMediatorProtocol 的 ViewController
     YFMediatorInterceptAfterInit,       // handler(viewController, params)
 } YFMediatorIntercept;
 
 /**
  拦截操作，在 Mediator 创建 ViewController 的时候触发
+ 找不到对应的控制器 YFMediatorInterceptNotFound
  创建之前 YFMediatorInterceptBeforeInit
  赋值之前 YFMediatorInterceptBeforeSetValue
  创建完成 YFMediatorInterceptAfterInit
@@ -205,13 +208,13 @@ typedef enum : NSUInteger {
  @param option YFMediatorIntercept
  @param handler YFMediatorInterceptHandler
  */
-- (void)intercept:(YFMediatorIntercept)option handler:(YFMediatorInterceptHandlerBlock)handler;
+ - (void)intercept:(YFMediatorIntercept)option handler:(YFMediatorInterceptHandlerBlock)handler;
 ```
 
 ## Installation
 
 ```ruby
-pod "YFMediator" :git => 'https://github.com/laichanwai/YFMediator.git'
+pod "YFMediator"
 ```
 
 ## Author

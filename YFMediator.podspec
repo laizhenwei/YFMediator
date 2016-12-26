@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'YFMediator'
-  s.version          = '0.1.0'
+  s.version          = '0.1.2'
   s.summary          = 'iOS Mediator'
   s.description      = <<-DESC
                        YFMediator is a part of YFKit
@@ -9,6 +9,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'laizw' => 'i@laizw.cn' }
   s.source           = { :git => 'https://github.com/laichanwai/YFMediator.git', :tag => s.version }
-  s.ios.deployment_target = '6.0'
+  s.ios.deployment_target = '8.0'
   s.source_files = 'YFMediator', 'YFMediator/*.{h,m}'
+  s.dependency 'YFRouter'
 end

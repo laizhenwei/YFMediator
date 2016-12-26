@@ -19,5 +19,8 @@ DerivedData
 *.hmap
 *.ipa
 
+# Pods
+Pods
+
 #AppCode
 .idea/

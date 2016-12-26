@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef BOOL(^YFMediatorInterceptHandlerBlock)(id viewController, NSMutableDictionary *params);
+typedef BOOL(^YFMediatorInterceptHandlerBlock)(id *viewController, NSMutableDictionary *params);
 
 @protocol YFMediatorProtocol <NSObject>
 
@@ -24,7 +24,8 @@ typedef BOOL(^YFMediatorInterceptHandlerBlock)(id viewController, NSMutableDicti
 @end
 
 typedef enum : NSUInteger {
-    YFMediatorInterceptBeforeInit,      // handler(className, params)
+    YFMediatorInterceptNotFound,        // handler(className | URL, params)
+    YFMediatorInterceptBeforeInit,      // handler(className | URL, params)
     YFMediatorInterceptBeforeSetValue,  // handler(viewController, params)，不会拦截实现 YFMediatorProtocol 的 ViewController
     YFMediatorInterceptAfterInit,       // handler(viewController, params)
 } YFMediatorIntercept;
@@ -51,6 +52,7 @@ typedef enum : NSUInteger {
 
 /**
  拦截操作，在 Mediator 创建 ViewController 的时候触发
+ 找不到对应的控制器 YFMediatorInterceptNotFound
  创建之前 YFMediatorInterceptBeforeInit
  赋值之前 YFMediatorInterceptBeforeSetValue
  创建完成 YFMediatorInterceptAfterInit
@@ -61,36 +63,6 @@ typedef enum : NSUInteger {
  @param handler YFMediatorInterceptHandler
  */
 - (void)intercept:(YFMediatorIntercept)option handler:(YFMediatorInterceptHandlerBlock)handler;
-
-/**
- 绑定 ViewController 和 短链
- 短链是一种 Key 的形式
- eg. [YFMediator mapURL:@"login" toViewController:LoginViewController];
- 如果需要使用 URL 传参数
- eg. /login?name=123&pwd=123 这种形式请结合使用 [YFRouter](https://github.com/laichanwai/YFRouter)
-
- @param url 短链
- @param viewController ViewController
- */
-- (void)mapURL:(NSString *)url toViewController:(NSString *)viewController;
-
-/**
-  eg. @{
-        @"user/info" : @"UserInfoViewController",
-        @"login"     : @"LoginViewController"
-        ...
-      }
-
- @param mapping mapping
- */
-- (void)addMapping:(NSDictionary *)mapping;
-
-/**
- 删除短链
-
- @param url 短链
- */
-- (void)removeURL:(NSString *)url;
 
 /**
  获取当前的控制器
@@ -152,6 +124,39 @@ typedef enum : NSUInteger {
 - (UIViewController *)popToRootAnimate:(BOOL)animate;
 - (UIViewController *)popTo:(NSString *)viewController;
 - (UIViewController *)popTo:(NSString *)viewController animate:(BOOL)animate;
+
+@end
+
+@interface YFMediator (YFRouter)
+
+/**
+ 绑定 ViewController 和 URL
+ eg. [YFMediator mapURL:@"login" toViewController:LoginViewController];
+     [YFMediator push:@"login?user=laizw&password=123123"];
+ 
+ @param url 短链
+ @param viewController ViewController
+ */
+- (void)mapURL:(NSString *)url toViewController:(NSString *)viewController;
+
+/**
+ eg. 
+ @{
+   @"user/info" : @"UserInfoViewController",
+   @"login"     : @"LoginViewController"
+   ...
+ }
+ 
+ @param mapping mapping
+ */
+- (void)addMapping:(NSDictionary *)mapping;
+
+/**
+ 删除短链
+ 
+ @param url 短链
+ */
+- (void)removeURL:(NSString *)url;
 
 @end
 

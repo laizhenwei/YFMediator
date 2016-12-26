@@ -1,3 +1,4 @@
 language: objective-c
 osx_image: xcode8.1
-script: xcodebuild -project YFMediatorDemo.xcodeproj -scheme YFMediatorDemo -destination 'platform=iOS Simulator,name=iPhone 6' build
+before_script: pod install
+script: xcodebuild -workspace YFMediatorDemo.xcworkspace -scheme YFMediatorDemo -destination 'platform=iOS Simulator,name=iPhone 6' build
