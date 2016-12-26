@@ -8,7 +8,7 @@
 
 #import "YFMediator.h"
 #import <objc/message.h>
-#import <YFRouter.h>
+#import <YFRouter/YFRouter.h>
 
 @interface YFMediator ()
 @property (nonatomic, strong, readwrite) NSMutableDictionary *controllers;

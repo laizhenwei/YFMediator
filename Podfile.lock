@@ -1,24 +1,15 @@
 PODS:
   - YFLog (0.2.0)
-  - YFRouter (0.1.1):
+  - YFRouter (0.1.2):
     - YFLog
 
 DEPENDENCIES:
-  - YFRouter (from `https://github.com/laichanwai/YFRouter.git`)
-
-EXTERNAL SOURCES:
-  YFRouter:
-    :git: https://github.com/laichanwai/YFRouter.git
-
-CHECKOUT OPTIONS:
-  YFRouter:
-    :commit: 98b14a9bbe0ac68aa300fd8783a01c944f73bbea
-    :git: https://github.com/laichanwai/YFRouter.git
+  - YFRouter (= 0.1.2)
 
 SPEC CHECKSUMS:
   YFLog: 833324be28c450ec611e11604d50dae7731e60ae
-  YFRouter: 3341f86280151920749a0278ffbf5a2d2e556e56
+  YFRouter: 56e37d43947b89a85db4bf777959b82b42297555
 
-PODFILE CHECKSUM: ca8623a74350caede5cc0c3d1cfa42c2940e6f0d
+PODFILE CHECKSUM: 960b31e4d20441ce846c8b59b9093f9873d61f26
 
 COCOAPODS: 1.1.1
