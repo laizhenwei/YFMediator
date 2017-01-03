@@ -8,7 +8,6 @@
 
 #import "YFMediator.h"
 #import <objc/message.h>
-#import <YFRouter/YFRouter.h>
 
 @interface YFMediator ()
 @property (nonatomic, strong, readwrite) NSMutableDictionary *controllers;
@@ -29,27 +28,6 @@
 }
 
 #pragma mark - Operation
-- (void)mapURL:(NSString *)url toViewController:(NSString *)viewController {
-    if (url.length <= 0 || viewController.length <= 0) return;
-    self.controllers[url] = viewController;
-    [YFRouter registerURL:url object:viewController];
-}
-
-- (void)addMapping:(NSDictionary *)mapping {
-    if (!mapping) return;
-    [self.controllers addEntriesFromDictionary:mapping];
-    for (NSString *key in mapping) {
-        [YFRouter registerURL:key object:mapping[key]];
-    }
-}
-
-- (void)removeURL:(NSString *)url {
-    if (self.controllers[url]) {
-        [self.controllers removeObjectForKey:url];
-    }
-    [YFRouter unregisterURL:url];
-}
-
 - (void)registerNavigationController:(Class)navigationClass {
     self.navigationClass = navigationClass;
 }
@@ -58,12 +36,10 @@
     if (!handler) return;
     #define YFMediatorInterceptBinding(__option__) \
     if (option == __option__) self.intercepts[@#__option__] = handler;
-    
-    YFMediatorInterceptBinding(YFMediatorInterceptNotFound)
-    YFMediatorInterceptBinding(YFMediatorInterceptBeforeInit)
-    YFMediatorInterceptBinding(YFMediatorInterceptBeforeSetValue)
-    YFMediatorInterceptBinding(YFMediatorInterceptAfterInit)
-    
+        YFMediatorInterceptBinding(YFMediatorInterceptNotFound)
+        YFMediatorInterceptBinding(YFMediatorInterceptBeforeInit)
+        YFMediatorInterceptBinding(YFMediatorInterceptBeforeSetValue)
+        YFMediatorInterceptBinding(YFMediatorInterceptAfterInit)
     #undef YFMediatorInterceptBinding
 }
 
@@ -129,14 +105,16 @@
     do {
         clazz = NSClassFromString(viewController);
         if (clazz) break;
-        YFObject *object = [YFRouter objectForRoute:viewController params:nil];
-        NSString *newClass = object.value;
-        clazz = NSClassFromString(newClass);
-        if (clazz) {
-            [newParams addEntriesFromDictionary:object.params];
-            [newParams removeObjectsForKeys:@[YFRouterPathKey, YFRouterSchemeKey, YFRouterURLKey]];
-            break;
-        }
+        #ifdef YFRouterDomain
+            YFObject *object = [YFRouter objectForRoute:viewController params:nil];
+            NSString *newClass = object.value;
+            clazz = NSClassFromString(newClass);
+            if (clazz) {
+                [newParams addEntriesFromDictionary:object.params];
+                [newParams removeObjectsForKeys:@[YFRouterPathKey, YFRouterSchemeKey, YFRouterURLKey]];
+                break;
+            }
+        #endif
         if (!stop && self.intercepts[@"YFMediatorInterceptNotFound"]) {
             YFMediatorInterceptOperation(YFMediatorInterceptNotFound, viewController)
             stop = YES;
@@ -269,6 +247,33 @@
 }
 
 @end
+
+#ifdef YFRouterDomain
+@implementation YFMediator (YFRouter)
+
+- (void)mapURL:(NSString *)url toViewController:(NSString *)viewController {
+    if (url.length <= 0 || viewController.length <= 0) return;
+    self.controllers[url] = viewController;
+    [YFRouter registerURL:url object:viewController];
+}
+
+- (void)addMapping:(NSDictionary *)mapping {
+    if (!mapping) return;
+    [self.controllers addEntriesFromDictionary:mapping];
+    for (NSString *key in mapping) {
+        [YFRouter registerURL:key object:mapping[key]];
+    }
+}
+
+- (void)removeURL:(NSString *)url {
+    if (self.controllers[url]) {
+        [self.controllers removeObjectForKey:url];
+    }
+    [YFRouter unregisterURL:url];
+}
+
+@end
+#endif
 
 @implementation UIViewController (YFMediator)
 

@@ -127,6 +127,11 @@ typedef enum : NSUInteger {
 
 @end
 
+#if __has_include(<YFRouter/YFRouter.h>)
+    #import <YFRouter/YFRouter.h>
+#endif
+
+#ifdef YFRouterDomain
 @interface YFMediator (YFRouter)
 
 /**
@@ -159,6 +164,7 @@ typedef enum : NSUInteger {
 - (void)removeURL:(NSString *)url;
 
 @end
+#endif
 
 @interface UIViewController (YFMediator)
 
