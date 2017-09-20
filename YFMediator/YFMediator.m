@@ -132,7 +132,7 @@
             YFMediatorInterceptOperation(YFMediatorInterceptBeforeSetValue, vc)
             [vc setParams:[newParams copy]];
             for (NSString *key in newParams) {
-                NSString *setter = [NSString stringWithFormat:@"set%@:", [key capitalizedString]];
+                NSString *setter = [NSString stringWithFormat:@"set%@%@:", [[key substringToIndex:1] uppercaseString], [key substringFromIndex:1]];
                 if ([vc respondsToSelector:NSSelectorFromString(setter)]) {
                     ((void (*)(id, SEL, id))objc_msgSend)(vc, NSSelectorFromString(setter), newParams[key]);
                 }
