@@ -18,7 +18,7 @@
 }
 
 - (UIViewController *)present:(NSString *)viewController params:(NSDictionary *)params animator:(id<UIViewControllerAnimatedTransitioning>)animator {
-    return [self present:viewController animate:animator params:params withNavigation:YES];
+    return [self present:viewController params:params animator:animator withNavigation:YES];
 }
 
 - (UIViewController *)present:(NSString *)viewController params:(NSDictionary *)params animator:(id<UIViewControllerAnimatedTransitioning>)animator withNavigation:(BOOL)hasNav {
