@@ -15,13 +15,19 @@
 		C614B8041E0120E3001ADD9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C614B8031E0120E3001ADD9D /* Assets.xcassets */; };
 		C614B8071E0120E3001ADD9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C614B8051E0120E3001ADD9D /* LaunchScreen.storyboard */; };
 		C614B8121E0120E3001ADD9D /* YFMediatorDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C614B8111E0120E3001ADD9D /* YFMediatorDemoTests.m */; };
-		C614B81F1E012109001ADD9D /* YFMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = C614B81E1E012109001ADD9D /* YFMediator.m */; };
 		C614B8221E014FB8001ADD9D /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = C614B8211E014FB8001ADD9D /* ViewController2.m */; };
 		C614B8251E014FC1001ADD9D /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = C614B8241E014FC1001ADD9D /* ViewController3.m */; };
 		C614B8281E014FCD001ADD9D /* ViewController4.m in Sources */ = {isa = PBXBuildFile; fileRef = C614B8271E014FCD001ADD9D /* ViewController4.m */; };
 		C658CD021E03E26400511B6E /* YFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C658CD011E03E26400511B6E /* YFNavigationController.m */; };
 		C658CD051E03EF2400511B6E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C658CD041E03EF2400511B6E /* BaseViewController.m */; };
 		C658CD081E040AFB00511B6E /* ViewController5.m in Sources */ = {isa = PBXBuildFile; fileRef = C658CD071E040AFB00511B6E /* ViewController5.m */; };
+		C6624D691F7E4DDF001FAC30 /* YFProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = C6624D651F7E4DC9001FAC30 /* YFProxy.m */; };
+		C6624D6A1F7E4DE5001FAC30 /* YFAspect.m in Sources */ = {isa = PBXBuildFile; fileRef = C6624D681F7E4DCA001FAC30 /* YFAspect.m */; };
+		C6831EB71F723CE500397639 /* UINavigationController+MediatorAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = C6831EB11F723CE400397639 /* UINavigationController+MediatorAnimator.m */; };
+		C6831EB81F723CE500397639 /* UIViewController+MediatorAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = C6831EB21F723CE400397639 /* UIViewController+MediatorAnimator.m */; };
+		C6831EB91F723CE500397639 /* YFMediator+Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = C6831EB61F723CE400397639 /* YFMediator+Animator.m */; };
+		C6831EBC1F723D1400397639 /* YFMediator+YFRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C6831EBB1F723D1400397639 /* YFMediator+YFRouter.m */; };
+		C6831EBF1F723E3100397639 /* YFMediator+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = C6831EBE1F723E3100397639 /* YFMediator+Core.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +57,6 @@
 		C614B8111E0120E3001ADD9D /* YFMediatorDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFMediatorDemoTests.m; sourceTree = "<group>"; };
 		C614B8131E0120E3001ADD9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C614B81D1E012109001ADD9D /* YFMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFMediator.h; sourceTree = "<group>"; };
-		C614B81E1E012109001ADD9D /* YFMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFMediator.m; sourceTree = "<group>"; };
 		C614B8201E014FB8001ADD9D /* ViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
 		C614B8211E014FB8001ADD9D /* ViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
 		C614B8231E014FC1001ADD9D /* ViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController3.h; sourceTree = "<group>"; };
@@ -64,6 +69,20 @@
 		C658CD041E03EF2400511B6E /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		C658CD061E040AFB00511B6E /* ViewController5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController5.h; sourceTree = "<group>"; };
 		C658CD071E040AFB00511B6E /* ViewController5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController5.m; sourceTree = "<group>"; };
+		C6624D641F7E4DC9001FAC30 /* YFProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFProxy.h; sourceTree = "<group>"; };
+		C6624D651F7E4DC9001FAC30 /* YFProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFProxy.m; sourceTree = "<group>"; };
+		C6624D671F7E4DCA001FAC30 /* YFAspect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFAspect.h; sourceTree = "<group>"; };
+		C6624D681F7E4DCA001FAC30 /* YFAspect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFAspect.m; sourceTree = "<group>"; };
+		C6831EB11F723CE400397639 /* UINavigationController+MediatorAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MediatorAnimator.m"; sourceTree = "<group>"; };
+		C6831EB21F723CE400397639 /* UIViewController+MediatorAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MediatorAnimator.m"; sourceTree = "<group>"; };
+		C6831EB31F723CE400397639 /* YFMediator+Animator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YFMediator+Animator.h"; sourceTree = "<group>"; };
+		C6831EB41F723CE400397639 /* UINavigationController+MediatorAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MediatorAnimator.h"; sourceTree = "<group>"; };
+		C6831EB51F723CE400397639 /* UIViewController+MediatorAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MediatorAnimator.h"; sourceTree = "<group>"; };
+		C6831EB61F723CE400397639 /* YFMediator+Animator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YFMediator+Animator.m"; sourceTree = "<group>"; };
+		C6831EBA1F723D1400397639 /* YFMediator+YFRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YFMediator+YFRouter.h"; sourceTree = "<group>"; };
+		C6831EBB1F723D1400397639 /* YFMediator+YFRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YFMediator+YFRouter.m"; sourceTree = "<group>"; };
+		C6831EBD1F723E3100397639 /* YFMediator+Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YFMediator+Core.h"; sourceTree = "<group>"; };
+		C6831EBE1F723E3100397639 /* YFMediator+Core.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YFMediator+Core.m"; sourceTree = "<group>"; };
 		D8B4530D507F07EC1FB9D61C /* Pods-YFMediatorDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFMediatorDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YFMediatorDemo/Pods-YFMediatorDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,9 +192,62 @@
 			isa = PBXGroup;
 			children = (
 				C614B81D1E012109001ADD9D /* YFMediator.h */,
-				C614B81E1E012109001ADD9D /* YFMediator.m */,
+				C6831EC31F723F8F00397639 /* Core */,
+				C6831EC41F723F9A00397639 /* Category */,
+				C6624D6B1F7E4FE3001FAC30 /* Util */,
 			);
 			path = YFMediator;
+			sourceTree = "<group>";
+		};
+		C6624D631F7E4DC9001FAC30 /* YFProxy */ = {
+			isa = PBXGroup;
+			children = (
+				C6624D641F7E4DC9001FAC30 /* YFProxy.h */,
+				C6624D651F7E4DC9001FAC30 /* YFProxy.m */,
+			);
+			path = YFProxy;
+			sourceTree = "<group>";
+		};
+		C6624D661F7E4DCA001FAC30 /* YFAspect */ = {
+			isa = PBXGroup;
+			children = (
+				C6624D671F7E4DCA001FAC30 /* YFAspect.h */,
+				C6624D681F7E4DCA001FAC30 /* YFAspect.m */,
+			);
+			path = YFAspect;
+			sourceTree = "<group>";
+		};
+		C6624D6B1F7E4FE3001FAC30 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C6624D661F7E4DCA001FAC30 /* YFAspect */,
+				C6624D631F7E4DC9001FAC30 /* YFProxy */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		C6831EC31F723F8F00397639 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C6831EBD1F723E3100397639 /* YFMediator+Core.h */,
+				C6831EBE1F723E3100397639 /* YFMediator+Core.m */,
+				C6831EB31F723CE400397639 /* YFMediator+Animator.h */,
+				C6831EB61F723CE400397639 /* YFMediator+Animator.m */,
+				C6831EBA1F723D1400397639 /* YFMediator+YFRouter.h */,
+				C6831EBB1F723D1400397639 /* YFMediator+YFRouter.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		C6831EC41F723F9A00397639 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				C6831EB51F723CE400397639 /* UIViewController+MediatorAnimator.h */,
+				C6831EB21F723CE400397639 /* UIViewController+MediatorAnimator.m */,
+				C6831EB41F723CE400397639 /* UINavigationController+MediatorAnimator.h */,
+				C6831EB11F723CE400397639 /* UINavigationController+MediatorAnimator.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,7 +365,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		62E3067DB380FFB6C3DAC3A4 /* [CP] Embed Pods Frameworks */ = {
@@ -337,12 +409,18 @@
 				C658CD051E03EF2400511B6E /* BaseViewController.m in Sources */,
 				C658CD081E040AFB00511B6E /* ViewController5.m in Sources */,
 				C614B7FC1E0120E3001ADD9D /* AppDelegate.m in Sources */,
+				C6624D6A1F7E4DE5001FAC30 /* YFAspect.m in Sources */,
 				C658CD021E03E26400511B6E /* YFNavigationController.m in Sources */,
+				C6831EBF1F723E3100397639 /* YFMediator+Core.m in Sources */,
 				C614B8251E014FC1001ADD9D /* ViewController3.m in Sources */,
+				C6831EB81F723CE500397639 /* UIViewController+MediatorAnimator.m in Sources */,
 				C614B8221E014FB8001ADD9D /* ViewController2.m in Sources */,
+				C6831EB91F723CE500397639 /* YFMediator+Animator.m in Sources */,
 				C614B7F91E0120E3001ADD9D /* main.m in Sources */,
 				C614B8281E014FCD001ADD9D /* ViewController4.m in Sources */,
-				C614B81F1E012109001ADD9D /* YFMediator.m in Sources */,
+				C6831EBC1F723D1400397639 /* YFMediator+YFRouter.m in Sources */,
+				C6831EB71F723CE500397639 /* UINavigationController+MediatorAnimator.m in Sources */,
+				C6624D691F7E4DDF001FAC30 /* YFProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
