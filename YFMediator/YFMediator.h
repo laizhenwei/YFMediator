@@ -13,6 +13,8 @@
 #import "YFMediator+YFRouter.h"
 #import "YFMediator+Animator.h"
 
-#define kYFMediator [YFMediator shared]
+#ifndef kYFMediator
+#   define kYFMediator [YFMediator shared]
+#endif
 
 #endif /* YFMediator_h */

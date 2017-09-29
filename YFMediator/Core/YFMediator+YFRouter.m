@@ -11,6 +11,8 @@
 #ifdef YFRouterDomain
 @implementation YFMediator (YFRouter)
 
+@dynamic controllers;
+
 - (void)mapURL:(NSString *)url toViewController:(NSString *)viewController {
     if (url.length <= 0 || viewController.length <= 0) return;
     self.controllers[url] = viewController;

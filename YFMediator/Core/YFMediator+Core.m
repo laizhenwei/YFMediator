@@ -150,7 +150,10 @@
         for (NSString *key in newParams) {
             NSString *setter = [NSString stringWithFormat:@"set%@%@:", [[key substringToIndex:1] uppercaseString], [key substringFromIndex:1]];
             if ([vc respondsToSelector:NSSelectorFromString(setter)]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
                 [vc performSelector:NSSelectorFromString(setter) withObject:newParams[key]];
+#pragma clang diagnostic pop
             } else {
                 objc_property_t p = class_getProperty(clazz, [[NSString stringWithFormat:@"%@", key] UTF8String]);
                 if (p != NULL) {
@@ -158,7 +161,10 @@
                     if (setterAttr != NULL) {
                         setter = [NSString stringWithUTF8String:setterAttr];
                         if ([vc respondsToSelector:NSSelectorFromString(setter)]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
                             [vc performSelector:NSSelectorFromString(setter) withObject:newParams[key]];
+#pragma clang diagnostic pop
                         }
                     }
                 }
