@@ -29,4 +29,7 @@ typedef enum : NSUInteger {
     YFMediatorInterceptAfterInit,       // handler(viewController, params)
 } YFMediatorIntercept;
 
-#define kYFMediator
+#ifndef kYFMediator
+#   define kYFMediator [YFMediator shared]
+#endif
+

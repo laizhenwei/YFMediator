@@ -73,6 +73,7 @@
 		C6624D651F7E4DC9001FAC30 /* YFProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFProxy.m; sourceTree = "<group>"; };
 		C6624D671F7E4DCA001FAC30 /* YFAspect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFAspect.h; sourceTree = "<group>"; };
 		C6624D681F7E4DCA001FAC30 /* YFAspect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFAspect.m; sourceTree = "<group>"; };
+		C6624D6C1F7E55C2001FAC30 /* YFMediator+Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YFMediator+Define.h"; sourceTree = "<group>"; };
 		C6831EB11F723CE400397639 /* UINavigationController+MediatorAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MediatorAnimator.m"; sourceTree = "<group>"; };
 		C6831EB21F723CE400397639 /* UIViewController+MediatorAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MediatorAnimator.m"; sourceTree = "<group>"; };
 		C6831EB31F723CE400397639 /* YFMediator+Animator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YFMediator+Animator.h"; sourceTree = "<group>"; };
@@ -229,6 +230,7 @@
 		C6831EC31F723F8F00397639 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C6624D6C1F7E55C2001FAC30 /* YFMediator+Define.h */,
 				C6831EBD1F723E3100397639 /* YFMediator+Core.h */,
 				C6831EBE1F723E3100397639 /* YFMediator+Core.m */,
 				C6831EB31F723CE400397639 /* YFMediator+Animator.h */,
