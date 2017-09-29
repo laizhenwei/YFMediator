@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'YFMediator'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.summary          = 'iOS Mediator'
   s.description      = <<-DESC
                        YFMediator is a part of YFKit
