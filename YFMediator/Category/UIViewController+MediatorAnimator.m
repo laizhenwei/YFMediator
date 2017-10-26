@@ -31,12 +31,6 @@
 
 + (void)load {
     [YFAspect hook:self sel:@selector(setTransitioningDelegate:) with:@selector(yf_animate_setTransitioningDelegate:)];
-    [YFAspect hook:self sel:@selector(viewDidAppear:) with:@selector(yf_animate_viewDidAppear:)];
-}
-
-- (void)yf_animate_viewDidAppear:(BOOL)animated {
-    NSLog(@"top viewController : %@", [self class]);
-    [self yf_animate_viewDidAppear:animated];
 }
 
 - (void)yf_animate_setTransitioningDelegate:(id<UIViewControllerTransitioningDelegate>)transitioningDelegate {
