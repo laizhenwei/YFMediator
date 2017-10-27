@@ -11,7 +11,7 @@
 #import "YFProxy.h"
 
 @interface UINavigationController (Private)
-@property (nonatomic, strong, readonly) YFProxy *navigationDelegate;
+@property (nonatomic, strong, readonly) YFProxy *yf_navigationDelegate;
 - (void)resetDefaultSetting;
 @end
 
@@ -22,22 +22,22 @@
 
 #pragma mark - UINavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    [self.nav resetDefaultSetting];
-    if (self.nav.navigationDelegate.receiver) {
-        if ([self.nav.navigationDelegate.receiver respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
-            [self.nav.navigationDelegate.receiver navigationController:navigationController didShowViewController:viewController animated:animated];
+    self.nav.yf_animator = nil;
+    if (self.nav.yf_navigationDelegate.receiver) {
+        if ([self.nav.yf_navigationDelegate.receiver respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
+            [self.nav.yf_navigationDelegate.receiver navigationController:navigationController didShowViewController:viewController animated:animated];
         }
     }
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
     id<UIViewControllerAnimatedTransitioning> animator;
-    if (self.nav.navigationDelegate.receiver) {
-        if ([self.nav.navigationDelegate.receiver respondsToSelector:@selector(navigationController:animationControllerForOperation:fromViewController:toViewController:)]) {
-            animator = [self.nav.navigationDelegate.receiver navigationController:navigationController animationControllerForOperation:operation fromViewController:fromVC toViewController:toVC];
+    if (self.nav.yf_navigationDelegate.receiver) {
+        if ([self.nav.yf_navigationDelegate.receiver respondsToSelector:@selector(navigationController:animationControllerForOperation:fromViewController:toViewController:)]) {
+            animator = [self.nav.yf_navigationDelegate.receiver navigationController:navigationController animationControllerForOperation:operation fromViewController:fromVC toViewController:toVC];
         }
     }
-    return animator ?: self.nav.animator;
+    return animator ?: self.nav.yf_animator;
 }
 @end
 
@@ -51,41 +51,37 @@
 
 - (instancetype)yf_nav_initWithRootViewController:(UIViewController *)rootViewController {
     UINavigationController *nav = [self yf_nav_initWithRootViewController:rootViewController];
-    [nav navigationDelegate];
+    [nav yf_navigationDelegate];
     return nav;
 }
 
 - (void)yf_nav_setDelegate:(id<UINavigationControllerDelegate>)delegate {
-    self.navigationDelegate.receiver = delegate;
-    [self yf_nav_setDelegate:(id<UINavigationControllerDelegate>)self.navigationDelegate];
+    self.yf_navigationDelegate.receiver = delegate;
+    [self yf_nav_setDelegate:(id<UINavigationControllerDelegate>)self.yf_navigationDelegate];
 }
 
 #pragma mark - Public
-- (void)resetDefaultSetting {
-    self.animator = nil;
-}
-
 - (void)pushViewController:(UIViewController *)viewController animator:(id<UIViewControllerAnimatedTransitioning>)animator {
-    self.animator = animator;
+    self.yf_animator = animator;
     [self pushViewController:viewController animated:YES];
 }
 
 - (UIViewController *)pop:(id<UIViewControllerAnimatedTransitioning>)animator {
-    self.animator = animator;
+    self.yf_animator = animator;
     return [self popViewControllerAnimated:YES];
 }
 
 #pragma mark - Getter
-- (YFProxy *)navigationDelegate {
+- (YFProxy *)yf_navigationDelegate {
     YFProxy *_proxy = objc_getAssociatedObject(self, _cmd);
     if (!_proxy) {
-        _proxy = [YFProxy proxyWithMiddleman:self.handler];
+        _proxy = [YFProxy proxyWithMiddleman:self.yf_handler];
         objc_setAssociatedObject(self, _cmd, _proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return _proxy;
 }
 
-- (_YFNavigationDelegateHanlder *)handler {
+- (_YFNavigationDelegateHanlder *)yf_handler {
     _YFNavigationDelegateHanlder *handler = objc_getAssociatedObject(self, _cmd);
     if (!handler) {
         handler = [_YFNavigationDelegateHanlder new];

@@ -10,7 +10,7 @@
 #import "YFProxy.h"
 
 @interface UIViewController (Private)
-@property (nonatomic, strong) YFProxy *transitionDelegate;
+@property (nonatomic, strong) YFProxy *yf_transitionDelegate;
 @end
 
 @interface _UIViewControllerTransitioningDelegateHandler : NSObject <UIViewControllerTransitioningDelegate>
@@ -19,11 +19,11 @@
 @implementation _UIViewControllerTransitioningDelegateHandler
 - (id<UIViewControllerAnimatedTransitioning>)
     animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    return self.vc.animator;
+    return self.vc.yf_animator;
 }
 - (id<UIViewControllerAnimatedTransitioning>)
     animationControllerForDismissedController:(UIViewController *)dismissed {
-    return self.vc.animator;
+    return self.vc.yf_animator;
 }
 @end
 
@@ -34,45 +34,45 @@
 }
 
 - (void)yf_animate_setTransitioningDelegate:(id<UIViewControllerTransitioningDelegate>)transitioningDelegate {
-    self.transitionDelegate.middleman = transitioningDelegate;
-    [self yf_animate_setTransitioningDelegate:(id<UIViewControllerTransitioningDelegate>)self.transitionDelegate];
+    self.yf_transitionDelegate.middleman = transitioningDelegate;
+    [self yf_animate_setTransitioningDelegate:(id<UIViewControllerTransitioningDelegate>)self.yf_transitionDelegate];
 }
 
 - (void)presentViewController:(UIViewController *)viewController animator:(id<UIViewControllerAnimatedTransitioning>)animator {
     if (animator) {
-        viewController.animator = animator;
+        viewController.yf_animator = animator;
         if (!viewController.transitioningDelegate) {
             viewController.transitioningDelegate = nil;
         }
     }
     [self presentViewController:viewController animated:YES completion:^{
-        self.animator = nil;
+        self.yf_animator = nil;
     }];
 }
 
 - (void)dismissViewController:(id<UIViewControllerAnimatedTransitioning>)animator {
     if (animator) {
-        self.animator = animator;
+        self.yf_animator = animator;
         if (!self.transitioningDelegate) {
             self.transitioningDelegate = nil;
         }
     }
     [self dismissViewControllerAnimated:YES completion:^{
-        self.animator = nil;
+        self.yf_animator = nil;
     }];
 }
 
 #pragma mark - Getter
-- (YFProxy *)transitionDelegate {
+- (YFProxy *)yf_transitionDelegate {
     YFProxy *_proxy = objc_getAssociatedObject(self, _cmd);
     if (!_proxy) {
-        _proxy = [YFProxy proxyWithReceiver:self.transitionHandler];
+        _proxy = [YFProxy proxyWithReceiver:self.yf_handler];
         objc_setAssociatedObject(self, _cmd, _proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return _proxy;
 }
 
-- (_UIViewControllerTransitioningDelegateHandler *)transitionHandler {
+- (_UIViewControllerTransitioningDelegateHandler *)yf_handler {
     _UIViewControllerTransitioningDelegateHandler *handler = objc_getAssociatedObject(self, _cmd);
     if (!handler) {
         handler = [_UIViewControllerTransitioningDelegateHandler new];
@@ -82,11 +82,11 @@
     return handler;
 }
 
-- (void)setAnimator:(id<UIViewControllerAnimatedTransitioning>)animator {
-    objc_setAssociatedObject(self, @selector(animator), animator, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setYf_animator:(id<UIViewControllerAnimatedTransitioning>)animator {
+    objc_setAssociatedObject(self, @selector(yf_animator), animator, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (id<UIViewControllerAnimatedTransitioning>)animator {
+- (id<UIViewControllerAnimatedTransitioning>)yf_animator {
     return objc_getAssociatedObject(self, _cmd);
 }
 

@@ -9,7 +9,7 @@
 
 @interface UIViewController (MediatorAnimator)
 
-@property (nonatomic, strong) id<UIViewControllerAnimatedTransitioning> animator;
+@property (nonatomic, strong) id<UIViewControllerAnimatedTransitioning> yf_animator;
 
 - (void)presentViewController:(UIViewController *)viewController animator:(id<UIViewControllerAnimatedTransitioning>)animator;
 
