@@ -87,6 +87,7 @@
 		C675C05C20120B9800E1364D /* YFAspect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFAspect.h; sourceTree = "<group>"; };
 		C675C05D20120B9800E1364D /* YFAspect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFAspect.m; sourceTree = "<group>"; };
 		C675C05E20120B9800E1364D /* YFMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFMediator.h; sourceTree = "<group>"; };
+		C675C0672012123100E1364D /* YFMediator.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = YFMediator.podspec; sourceTree = "<group>"; };
 		D8B4530D507F07EC1FB9D61C /* Pods-YFMediatorDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFMediatorDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YFMediatorDemo/Pods-YFMediatorDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +130,7 @@
 		C614B7EB1E0120E3001ADD9D = {
 			isa = PBXGroup;
 			children = (
+				C675C0672012123100E1364D /* YFMediator.podspec */,
 				C675C04720120B9800E1364D /* YFMediator */,
 				C614B7F61E0120E3001ADD9D /* YFMediatorDemo */,
 				C614B8101E0120E3001ADD9D /* YFMediatorDemoTests */,

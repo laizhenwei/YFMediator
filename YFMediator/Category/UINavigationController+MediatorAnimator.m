@@ -12,7 +12,6 @@
 
 @interface UINavigationController (Private)
 @property (nonatomic, strong, readonly) YFChainProxy *yf_navigationDelegate;
-- (void)resetDefaultSetting;
 @end
 
 @interface _YFNavigationDelegateHanlder : NSObject <UINavigationControllerDelegate>
@@ -31,13 +30,13 @@
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
-    id<UIViewControllerAnimatedTransitioning> animator;
+    id<UIViewControllerAnimatedTransitioning> animator = self.nav.yf_animator;
     if (self.nav.yf_navigationDelegate.receiver) {
         if ([self.nav.yf_navigationDelegate.receiver respondsToSelector:@selector(navigationController:animationControllerForOperation:fromViewController:toViewController:)]) {
             animator = [self.nav.yf_navigationDelegate.receiver navigationController:navigationController animationControllerForOperation:operation fromViewController:fromVC toViewController:toVC];
         }
     }
-    return animator ?: self.nav.yf_animator;
+    return animator;
 }
 @end
 
@@ -57,7 +56,7 @@
 
 - (void)yf_nav_setDelegate:(id<UINavigationControllerDelegate>)delegate {
     self.yf_navigationDelegate.receiver = delegate;
-    [self yf_nav_setDelegate:(id<UINavigationControllerDelegate>)self.yf_navigationDelegate];
+    [self yf_nav_setDelegate:(id)self.yf_navigationDelegate];
 }
 
 #pragma mark - Public

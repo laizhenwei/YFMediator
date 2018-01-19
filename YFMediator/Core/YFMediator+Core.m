@@ -212,7 +212,6 @@
         if (vc.navigationController.viewControllers.count > 1) {
             return [vc.navigationController popViewControllerAnimated:animate];
         }
-        vc = vc.navigationController;
     }
     if (vc.presentingViewController) {
         [vc dismissViewControllerAnimated:animate completion:nil];

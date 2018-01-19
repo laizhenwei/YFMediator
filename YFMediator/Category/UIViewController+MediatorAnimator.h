@@ -11,7 +11,8 @@
 
 @property (nonatomic, strong) id<UIViewControllerAnimatedTransitioning> yf_animator;
 
-- (void)presentViewController:(UIViewController *)viewController animator:(id<UIViewControllerAnimatedTransitioning>)animator;
+- (void)presentViewController:(UIViewController *)viewController
+                     animator:(id<UIViewControllerAnimatedTransitioning>)animator;
 
 - (void)dismissViewController:(id<UIViewControllerAnimatedTransitioning>)animator;
 

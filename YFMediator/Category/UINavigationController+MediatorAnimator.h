@@ -10,7 +10,8 @@
 
 @interface UINavigationController (MediatorAnimator) <UINavigationControllerDelegate>
 
-- (void)pushViewController:(UIViewController *)viewController animator:(id<UIViewControllerAnimatedTransitioning>)animator;
+- (void)pushViewController:(UIViewController *)viewController
+                  animator:(id<UIViewControllerAnimatedTransitioning>)animator;
 
 - (UIViewController *)pop:(id<UIViewControllerAnimatedTransitioning>)animator;
 
