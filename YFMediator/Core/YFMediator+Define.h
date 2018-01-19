@@ -9,11 +9,19 @@
 
 typedef BOOL(^YFMediatorInterceptHandlerBlock)(id *viewController, NSMutableDictionary *params);
 
+// 自定义创建 ViewController 不会触发 YFMediatorInterceptBeforeSetValue 拦截
 @protocol YFMediatorProtocol <NSObject>
 
 /**
+ 自定义创建 ViewController，优先级最高
+ 
+ @param params 传入的参数
+ @return 返回的 ViewController
+ */
++ (instancetype)viewControllerWithParams:(NSDictionary *)params;
+
+/**
  实现这个方法可以自定义创建 ViewController
- 实现这个方法不会触发 YFMediatorInterceptBeforeSetValue 拦截
  
  @param params 传入的参数
  @return 返回的 ViewController

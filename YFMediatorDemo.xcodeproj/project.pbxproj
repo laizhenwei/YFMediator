@@ -21,13 +21,14 @@
 		C658CD021E03E26400511B6E /* YFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C658CD011E03E26400511B6E /* YFNavigationController.m */; };
 		C658CD051E03EF2400511B6E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C658CD041E03EF2400511B6E /* BaseViewController.m */; };
 		C658CD081E040AFB00511B6E /* ViewController5.m in Sources */ = {isa = PBXBuildFile; fileRef = C658CD071E040AFB00511B6E /* ViewController5.m */; };
-		C6624D691F7E4DDF001FAC30 /* YFProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = C6624D651F7E4DC9001FAC30 /* YFProxy.m */; };
-		C6624D6A1F7E4DE5001FAC30 /* YFAspect.m in Sources */ = {isa = PBXBuildFile; fileRef = C6624D681F7E4DCA001FAC30 /* YFAspect.m */; };
-		C6831EB71F723CE500397639 /* UINavigationController+MediatorAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = C6831EB11F723CE400397639 /* UINavigationController+MediatorAnimator.m */; };
-		C6831EB81F723CE500397639 /* UIViewController+MediatorAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = C6831EB21F723CE400397639 /* UIViewController+MediatorAnimator.m */; };
-		C6831EB91F723CE500397639 /* YFMediator+Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = C6831EB61F723CE400397639 /* YFMediator+Animator.m */; };
-		C6831EBC1F723D1400397639 /* YFMediator+YFRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C6831EBB1F723D1400397639 /* YFMediator+YFRouter.m */; };
-		C6831EBF1F723E3100397639 /* YFMediator+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = C6831EBE1F723E3100397639 /* YFMediator+Core.m */; };
+		C675C05F20120B9800E1364D /* YFMediator+Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = C675C04920120B9800E1364D /* YFMediator+Animator.m */; };
+		C675C06020120B9800E1364D /* YFMediator+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = C675C04D20120B9800E1364D /* YFMediator+Core.m */; };
+		C675C06120120B9800E1364D /* YFMediator+YFRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C675C04F20120B9800E1364D /* YFMediator+YFRouter.m */; };
+		C675C06220120B9800E1364D /* YFMediator+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = C675C05120120B9800E1364D /* YFMediator+Alert.m */; };
+		C675C06320120B9800E1364D /* UINavigationController+MediatorAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = C675C05520120B9800E1364D /* UINavigationController+MediatorAnimator.m */; };
+		C675C06420120B9800E1364D /* UIViewController+MediatorAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = C675C05620120B9800E1364D /* UIViewController+MediatorAnimator.m */; };
+		C675C06520120B9800E1364D /* YFChainProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = C675C05920120B9800E1364D /* YFChainProxy.m */; };
+		C675C06620120B9800E1364D /* YFAspect.m in Sources */ = {isa = PBXBuildFile; fileRef = C675C05D20120B9800E1364D /* YFAspect.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +57,6 @@
 		C614B80D1E0120E3001ADD9D /* YFMediatorDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YFMediatorDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C614B8111E0120E3001ADD9D /* YFMediatorDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFMediatorDemoTests.m; sourceTree = "<group>"; };
 		C614B8131E0120E3001ADD9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C614B81D1E012109001ADD9D /* YFMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFMediator.h; sourceTree = "<group>"; };
 		C614B8201E014FB8001ADD9D /* ViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
 		C614B8211E014FB8001ADD9D /* ViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
 		C614B8231E014FC1001ADD9D /* ViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController3.h; sourceTree = "<group>"; };
@@ -69,21 +69,24 @@
 		C658CD041E03EF2400511B6E /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		C658CD061E040AFB00511B6E /* ViewController5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController5.h; sourceTree = "<group>"; };
 		C658CD071E040AFB00511B6E /* ViewController5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController5.m; sourceTree = "<group>"; };
-		C6624D641F7E4DC9001FAC30 /* YFProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFProxy.h; sourceTree = "<group>"; };
-		C6624D651F7E4DC9001FAC30 /* YFProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFProxy.m; sourceTree = "<group>"; };
-		C6624D671F7E4DCA001FAC30 /* YFAspect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFAspect.h; sourceTree = "<group>"; };
-		C6624D681F7E4DCA001FAC30 /* YFAspect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFAspect.m; sourceTree = "<group>"; };
-		C6624D6C1F7E55C2001FAC30 /* YFMediator+Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YFMediator+Define.h"; sourceTree = "<group>"; };
-		C6831EB11F723CE400397639 /* UINavigationController+MediatorAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MediatorAnimator.m"; sourceTree = "<group>"; };
-		C6831EB21F723CE400397639 /* UIViewController+MediatorAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MediatorAnimator.m"; sourceTree = "<group>"; };
-		C6831EB31F723CE400397639 /* YFMediator+Animator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YFMediator+Animator.h"; sourceTree = "<group>"; };
-		C6831EB41F723CE400397639 /* UINavigationController+MediatorAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MediatorAnimator.h"; sourceTree = "<group>"; };
-		C6831EB51F723CE400397639 /* UIViewController+MediatorAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MediatorAnimator.h"; sourceTree = "<group>"; };
-		C6831EB61F723CE400397639 /* YFMediator+Animator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YFMediator+Animator.m"; sourceTree = "<group>"; };
-		C6831EBA1F723D1400397639 /* YFMediator+YFRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YFMediator+YFRouter.h"; sourceTree = "<group>"; };
-		C6831EBB1F723D1400397639 /* YFMediator+YFRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YFMediator+YFRouter.m"; sourceTree = "<group>"; };
-		C6831EBD1F723E3100397639 /* YFMediator+Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YFMediator+Core.h"; sourceTree = "<group>"; };
-		C6831EBE1F723E3100397639 /* YFMediator+Core.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YFMediator+Core.m"; sourceTree = "<group>"; };
+		C675C04920120B9800E1364D /* YFMediator+Animator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YFMediator+Animator.m"; sourceTree = "<group>"; };
+		C675C04A20120B9800E1364D /* YFMediator+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YFMediator+Core.h"; sourceTree = "<group>"; };
+		C675C04B20120B9800E1364D /* YFMediator+YFRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YFMediator+YFRouter.h"; sourceTree = "<group>"; };
+		C675C04C20120B9800E1364D /* YFMediator+Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YFMediator+Alert.h"; sourceTree = "<group>"; };
+		C675C04D20120B9800E1364D /* YFMediator+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YFMediator+Core.m"; sourceTree = "<group>"; };
+		C675C04E20120B9800E1364D /* YFMediator+Animator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YFMediator+Animator.h"; sourceTree = "<group>"; };
+		C675C04F20120B9800E1364D /* YFMediator+YFRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YFMediator+YFRouter.m"; sourceTree = "<group>"; };
+		C675C05020120B9800E1364D /* YFMediator+Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YFMediator+Define.h"; sourceTree = "<group>"; };
+		C675C05120120B9800E1364D /* YFMediator+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YFMediator+Alert.m"; sourceTree = "<group>"; };
+		C675C05320120B9800E1364D /* UINavigationController+MediatorAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MediatorAnimator.h"; sourceTree = "<group>"; };
+		C675C05420120B9800E1364D /* UIViewController+MediatorAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MediatorAnimator.h"; sourceTree = "<group>"; };
+		C675C05520120B9800E1364D /* UINavigationController+MediatorAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MediatorAnimator.m"; sourceTree = "<group>"; };
+		C675C05620120B9800E1364D /* UIViewController+MediatorAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MediatorAnimator.m"; sourceTree = "<group>"; };
+		C675C05920120B9800E1364D /* YFChainProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFChainProxy.m; sourceTree = "<group>"; };
+		C675C05A20120B9800E1364D /* YFChainProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFChainProxy.h; sourceTree = "<group>"; };
+		C675C05C20120B9800E1364D /* YFAspect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFAspect.h; sourceTree = "<group>"; };
+		C675C05D20120B9800E1364D /* YFAspect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFAspect.m; sourceTree = "<group>"; };
+		C675C05E20120B9800E1364D /* YFMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFMediator.h; sourceTree = "<group>"; };
 		D8B4530D507F07EC1FB9D61C /* Pods-YFMediatorDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFMediatorDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YFMediatorDemo/Pods-YFMediatorDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,7 +129,7 @@
 		C614B7EB1E0120E3001ADD9D = {
 			isa = PBXGroup;
 			children = (
-				C614B81C1E0120F8001ADD9D /* YFMediator */,
+				C675C04720120B9800E1364D /* YFMediator */,
 				C614B7F61E0120E3001ADD9D /* YFMediatorDemo */,
 				C614B8101E0120E3001ADD9D /* YFMediatorDemoTests */,
 				C614B7F51E0120E3001ADD9D /* Products */,
@@ -189,67 +192,69 @@
 			path = YFMediatorDemoTests;
 			sourceTree = "<group>";
 		};
-		C614B81C1E0120F8001ADD9D /* YFMediator */ = {
+		C675C04720120B9800E1364D /* YFMediator */ = {
 			isa = PBXGroup;
 			children = (
-				C614B81D1E012109001ADD9D /* YFMediator.h */,
-				C6831EC31F723F8F00397639 /* Core */,
-				C6831EC41F723F9A00397639 /* Category */,
-				C6624D6B1F7E4FE3001FAC30 /* Util */,
+				C675C04820120B9800E1364D /* Core */,
+				C675C05220120B9800E1364D /* Category */,
+				C675C05720120B9800E1364D /* Util */,
+				C675C05E20120B9800E1364D /* YFMediator.h */,
 			);
 			path = YFMediator;
 			sourceTree = "<group>";
 		};
-		C6624D631F7E4DC9001FAC30 /* YFProxy */ = {
+		C675C04820120B9800E1364D /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				C6624D641F7E4DC9001FAC30 /* YFProxy.h */,
-				C6624D651F7E4DC9001FAC30 /* YFProxy.m */,
-			);
-			path = YFProxy;
-			sourceTree = "<group>";
-		};
-		C6624D661F7E4DCA001FAC30 /* YFAspect */ = {
-			isa = PBXGroup;
-			children = (
-				C6624D671F7E4DCA001FAC30 /* YFAspect.h */,
-				C6624D681F7E4DCA001FAC30 /* YFAspect.m */,
-			);
-			path = YFAspect;
-			sourceTree = "<group>";
-		};
-		C6624D6B1F7E4FE3001FAC30 /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				C6624D661F7E4DCA001FAC30 /* YFAspect */,
-				C6624D631F7E4DC9001FAC30 /* YFProxy */,
-			);
-			path = Util;
-			sourceTree = "<group>";
-		};
-		C6831EC31F723F8F00397639 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				C6624D6C1F7E55C2001FAC30 /* YFMediator+Define.h */,
-				C6831EBD1F723E3100397639 /* YFMediator+Core.h */,
-				C6831EBE1F723E3100397639 /* YFMediator+Core.m */,
-				C6831EB31F723CE400397639 /* YFMediator+Animator.h */,
-				C6831EB61F723CE400397639 /* YFMediator+Animator.m */,
-				C6831EBA1F723D1400397639 /* YFMediator+YFRouter.h */,
-				C6831EBB1F723D1400397639 /* YFMediator+YFRouter.m */,
+				C675C04920120B9800E1364D /* YFMediator+Animator.m */,
+				C675C04A20120B9800E1364D /* YFMediator+Core.h */,
+				C675C04B20120B9800E1364D /* YFMediator+YFRouter.h */,
+				C675C04C20120B9800E1364D /* YFMediator+Alert.h */,
+				C675C04D20120B9800E1364D /* YFMediator+Core.m */,
+				C675C04E20120B9800E1364D /* YFMediator+Animator.h */,
+				C675C04F20120B9800E1364D /* YFMediator+YFRouter.m */,
+				C675C05020120B9800E1364D /* YFMediator+Define.h */,
+				C675C05120120B9800E1364D /* YFMediator+Alert.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
 		};
-		C6831EC41F723F9A00397639 /* Category */ = {
+		C675C05220120B9800E1364D /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				C6831EB51F723CE400397639 /* UIViewController+MediatorAnimator.h */,
-				C6831EB21F723CE400397639 /* UIViewController+MediatorAnimator.m */,
-				C6831EB41F723CE400397639 /* UINavigationController+MediatorAnimator.h */,
-				C6831EB11F723CE400397639 /* UINavigationController+MediatorAnimator.m */,
+				C675C05320120B9800E1364D /* UINavigationController+MediatorAnimator.h */,
+				C675C05420120B9800E1364D /* UIViewController+MediatorAnimator.h */,
+				C675C05520120B9800E1364D /* UINavigationController+MediatorAnimator.m */,
+				C675C05620120B9800E1364D /* UIViewController+MediatorAnimator.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		C675C05720120B9800E1364D /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C675C05820120B9800E1364D /* YFProxy */,
+				C675C05B20120B9800E1364D /* YFAspect */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		C675C05820120B9800E1364D /* YFProxy */ = {
+			isa = PBXGroup;
+			children = (
+				C675C05920120B9800E1364D /* YFChainProxy.m */,
+				C675C05A20120B9800E1364D /* YFChainProxy.h */,
+			);
+			path = YFProxy;
+			sourceTree = "<group>";
+		};
+		C675C05B20120B9800E1364D /* YFAspect */ = {
+			isa = PBXGroup;
+			children = (
+				C675C05C20120B9800E1364D /* YFAspect.h */,
+				C675C05D20120B9800E1364D /* YFAspect.m */,
+			);
+			path = YFAspect;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,22 +412,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C675C06420120B9800E1364D /* UIViewController+MediatorAnimator.m in Sources */,
 				C614B7FF1E0120E3001ADD9D /* ViewController1.m in Sources */,
 				C658CD051E03EF2400511B6E /* BaseViewController.m in Sources */,
 				C658CD081E040AFB00511B6E /* ViewController5.m in Sources */,
 				C614B7FC1E0120E3001ADD9D /* AppDelegate.m in Sources */,
-				C6624D6A1F7E4DE5001FAC30 /* YFAspect.m in Sources */,
 				C658CD021E03E26400511B6E /* YFNavigationController.m in Sources */,
-				C6831EBF1F723E3100397639 /* YFMediator+Core.m in Sources */,
+				C675C06220120B9800E1364D /* YFMediator+Alert.m in Sources */,
 				C614B8251E014FC1001ADD9D /* ViewController3.m in Sources */,
-				C6831EB81F723CE500397639 /* UIViewController+MediatorAnimator.m in Sources */,
+				C675C06020120B9800E1364D /* YFMediator+Core.m in Sources */,
+				C675C06120120B9800E1364D /* YFMediator+YFRouter.m in Sources */,
+				C675C06320120B9800E1364D /* UINavigationController+MediatorAnimator.m in Sources */,
 				C614B8221E014FB8001ADD9D /* ViewController2.m in Sources */,
-				C6831EB91F723CE500397639 /* YFMediator+Animator.m in Sources */,
 				C614B7F91E0120E3001ADD9D /* main.m in Sources */,
+				C675C06520120B9800E1364D /* YFChainProxy.m in Sources */,
+				C675C05F20120B9800E1364D /* YFMediator+Animator.m in Sources */,
+				C675C06620120B9800E1364D /* YFAspect.m in Sources */,
 				C614B8281E014FCD001ADD9D /* ViewController4.m in Sources */,
-				C6831EBC1F723D1400397639 /* YFMediator+YFRouter.m in Sources */,
-				C6831EB71F723CE500397639 /* UINavigationController+MediatorAnimator.m in Sources */,
-				C6624D691F7E4DDF001FAC30 /* YFProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

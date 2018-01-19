@@ -1,5 +1,5 @@
 //
-//  YFProxy.h
+//  YFChainProxy.h
 //  AFNetworking
 //
 //  Created by laizw on 2017/9/18.
@@ -7,12 +7,12 @@
 
 /**
  Message Forward
- middleman -> receiver
+ msg -> middleman -> receiver
  */
 
 #import <Foundation/Foundation.h>
 
-@interface YFProxy : NSObject
+@interface YFChainProxy : NSObject
 
 @property (nonatomic, weak) id middleman;
 @property (nonatomic, weak) id receiver;

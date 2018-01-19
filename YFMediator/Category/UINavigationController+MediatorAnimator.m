@@ -8,10 +8,10 @@
 #import "UINavigationController+MediatorAnimator.h"
 #import <objc/message.h>
 #import "YFAspect.h"
-#import "YFProxy.h"
+#import "YFChainProxy.h"
 
 @interface UINavigationController (Private)
-@property (nonatomic, strong, readonly) YFProxy *yf_navigationDelegate;
+@property (nonatomic, strong, readonly) YFChainProxy *yf_navigationDelegate;
 - (void)resetDefaultSetting;
 @end
 
@@ -72,10 +72,10 @@
 }
 
 #pragma mark - Getter
-- (YFProxy *)yf_navigationDelegate {
-    YFProxy *_proxy = objc_getAssociatedObject(self, _cmd);
+- (YFChainProxy *)yf_navigationDelegate {
+    YFChainProxy *_proxy = objc_getAssociatedObject(self, _cmd);
     if (!_proxy) {
-        _proxy = [YFProxy proxyWithMiddleman:self.yf_handler];
+        _proxy = [YFChainProxy proxyWithMiddleman:self.yf_handler];
         objc_setAssociatedObject(self, _cmd, _proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return _proxy;

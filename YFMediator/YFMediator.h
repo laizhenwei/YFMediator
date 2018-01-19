@@ -12,5 +12,6 @@
 #import "YFMediator+Core.h"
 #import "YFMediator+YFRouter.h"
 #import "YFMediator+Animator.h"
+#import "YFMediator+Alert.h"
 
 #endif /* YFMediator_h */

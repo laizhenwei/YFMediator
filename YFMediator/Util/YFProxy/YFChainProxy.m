@@ -1,16 +1,16 @@
 //
-//  YFProxy.m
+//  YFChainProxy.m
 //  AFNetworking
 //
 //  Created by laizw on 2017/9/18.
 //
 
-#import "YFProxy.h"
+#import "YFChainProxy.h"
 
-@implementation YFProxy
+@implementation YFChainProxy
 
 + (instancetype)proxyWithReceiver:(id)receiver {
-    return [[YFProxy alloc] initWithReceiver:receiver];
+    return [[YFChainProxy alloc] initWithReceiver:receiver];
 }
 
 - (instancetype)initWithReceiver:(id)receiver {
@@ -21,7 +21,7 @@
 }
 
 + (instancetype)proxyWithMiddleman:(id)middleman {
-    return [[YFProxy alloc] initWithMiddleman:middleman];
+    return [[YFChainProxy alloc] initWithMiddleman:middleman];
 }
 
 - (instancetype)initWithMiddleman:(id)middleman {

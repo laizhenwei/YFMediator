@@ -104,7 +104,9 @@
     if (!clazz) return nil;
     
     id vc;
-    if ([clazz instancesRespondToSelector:@selector(initWithParams:)]) {
+    if ([clazz respondsToSelector:@selector(viewControllerWithParams:)]) {
+        vc = [clazz viewControllerWithParams:[newParams copy]];
+    } else if ([clazz instancesRespondToSelector:@selector(initWithParams:)]) {
         vc = [[clazz alloc] initWithParams:[newParams copy]];
     } else {
         vc = [self buildViewController:clazz params:newParams];

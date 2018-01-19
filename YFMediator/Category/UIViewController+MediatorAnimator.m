@@ -7,10 +7,10 @@
 
 #import "UIViewController+MediatorAnimator.h"
 #import "YFAspect.h"
-#import "YFProxy.h"
+#import "YFChainProxy.h"
 
 @interface UIViewController (Private)
-@property (nonatomic, strong) YFProxy *yf_transitionDelegate;
+@property (nonatomic, strong) YFChainProxy *yf_transitionDelegate;
 @end
 
 @interface _UIViewControllerTransitioningDelegateHandler : NSObject <UIViewControllerTransitioningDelegate>
@@ -63,10 +63,10 @@
 }
 
 #pragma mark - Getter
-- (YFProxy *)yf_transitionDelegate {
-    YFProxy *_proxy = objc_getAssociatedObject(self, _cmd);
+- (YFChainProxy *)yf_transitionDelegate {
+    YFChainProxy *_proxy = objc_getAssociatedObject(self, _cmd);
     if (!_proxy) {
-        _proxy = [YFProxy proxyWithReceiver:self.yf_handler];
+        _proxy = [YFChainProxy proxyWithReceiver:self.yf_handler];
         objc_setAssociatedObject(self, _cmd, _proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return _proxy;
