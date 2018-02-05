@@ -69,6 +69,7 @@
  */
 - (__kindof UIViewController *)viewController:(NSString *)viewController;
 - (__kindof UIViewController *)viewController:(NSString *)viewController params:(NSDictionary *)params;
+- (__kindof UIViewController *)viewController:(NSString *)viewController params:(NSDictionary *)params withNavigation:(BOOL)hasNav;
 
 /**
  Push 一个 ViewController

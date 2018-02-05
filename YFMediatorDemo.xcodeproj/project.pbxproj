@@ -208,14 +208,14 @@
 		C675C04820120B9800E1364D /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				C675C04920120B9800E1364D /* YFMediator+Animator.m */,
-				C675C04A20120B9800E1364D /* YFMediator+Core.h */,
-				C675C04B20120B9800E1364D /* YFMediator+YFRouter.h */,
-				C675C04C20120B9800E1364D /* YFMediator+Alert.h */,
-				C675C04D20120B9800E1364D /* YFMediator+Core.m */,
-				C675C04E20120B9800E1364D /* YFMediator+Animator.h */,
-				C675C04F20120B9800E1364D /* YFMediator+YFRouter.m */,
 				C675C05020120B9800E1364D /* YFMediator+Define.h */,
+				C675C04A20120B9800E1364D /* YFMediator+Core.h */,
+				C675C04D20120B9800E1364D /* YFMediator+Core.m */,
+				C675C04B20120B9800E1364D /* YFMediator+YFRouter.h */,
+				C675C04F20120B9800E1364D /* YFMediator+YFRouter.m */,
+				C675C04E20120B9800E1364D /* YFMediator+Animator.h */,
+				C675C04920120B9800E1364D /* YFMediator+Animator.m */,
+				C675C04C20120B9800E1364D /* YFMediator+Alert.h */,
 				C675C05120120B9800E1364D /* YFMediator+Alert.m */,
 			);
 			path = Core;

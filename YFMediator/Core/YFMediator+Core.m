@@ -95,11 +95,15 @@
 }
 
 - (UIViewController *)viewController:(NSString *)viewController params:(NSDictionary *)params {
+    return [self viewController:viewController params:params withNavigation:NO];
+}
+
+- (UIViewController *)viewController:(NSString *)viewController params:(NSDictionary *)params withNavigation:(BOOL)hasNav {
     if (viewController.length <= 0) return nil;
     
     NSMutableDictionary *newParams = (params ?: @{}).mutableCopy;
     YFMediatorInterceptOperation(YFMediatorInterceptBeforeInit, viewController)
-
+    
     Class clazz = [self obtainClassFromString:viewController params:newParams];
     if (!clazz) return nil;
     
@@ -110,6 +114,10 @@
         vc = [[clazz alloc] initWithParams:[newParams copy]];
     } else {
         vc = [self buildViewController:clazz params:newParams];
+    }
+    
+    if (hasNav) {
+        vc = [[self.navigationClass alloc] initWithRootViewController:vc];
     }
     
     YFMediatorInterceptOperation(YFMediatorInterceptAfterInit, vc)
@@ -145,7 +153,23 @@
 }
 
 - (UIViewController *)buildViewController:(Class)clazz params:(NSMutableDictionary *)newParams {
-    UIViewController *vc = [[clazz alloc] init];
+    UIViewController *vc;
+    if ([clazz respondsToSelector:@selector(nibName)]) {
+        NSBundle *bundle = nil;
+        if ([clazz respondsToSelector:@selector(customBundle)]) {
+            bundle = [clazz customBundle];
+        }
+        vc = [[clazz alloc] initWithNibName:[clazz nibName] bundle:bundle];
+    } else if ([clazz respondsToSelector:@selector(storyboardName)]) {
+        NSBundle *bundle = nil;
+        if ([clazz respondsToSelector:@selector(customBundle)]) {
+            bundle = [clazz customBundle];
+        }
+        vc = [[UIStoryboard storyboardWithName:[clazz storyboardName] bundle:bundle] instantiateViewControllerWithIdentifier:NSStringFromClass(clazz)];
+    } else {
+        vc = [[clazz alloc] init];
+    }
+    
     if (newParams && [vc respondsToSelector:@selector(setParams:)]) {
         YFMediatorInterceptOperation(YFMediatorInterceptBeforeSetValue, vc)
         [vc setParams:[newParams copy]];
@@ -192,11 +216,8 @@
 }
 
 - (UIViewController *)present:(NSString *)viewController animate:(BOOL)animate params:(NSDictionary *)params withNavigation:(BOOL)hasNav {
-    UIViewController *vc = [self viewController:viewController params:params];
+    UIViewController *vc = [self viewController:viewController params:params withNavigation:hasNav];
     if (!vc) return nil;
-    if (hasNav) {
-        vc = [[self.navigationClass alloc] initWithRootViewController:vc];
-    }
     [[self currentViewController] presentViewController:vc animated:animate completion:nil];
     return vc;
 }

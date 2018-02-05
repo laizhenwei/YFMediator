@@ -9,8 +9,20 @@
 
 typedef BOOL(^YFMediatorInterceptHandlerBlock)(id *viewController, NSMutableDictionary *params);
 
-// 自定义创建 ViewController 不会触发 YFMediatorInterceptBeforeSetValue 拦截
+/**
+ 自定义创建 ViewController
+ 
+ - 支持多种方式创建（优先级排序）:
+    + viewControllerWithParams:
+    - initWithParams:
+    + nibName
+    + storyboard
+ 
+ - viewControllerWithParams: 和 initWithParams: 不会触发 YFMediatorInterceptBeforeSetValue 拦截
+ */
 @protocol YFMediatorProtocol <NSObject>
+
+@optional
 
 /**
  自定义创建 ViewController，优先级最高
@@ -27,6 +39,27 @@ typedef BOOL(^YFMediatorInterceptHandlerBlock)(id *viewController, NSMutableDict
  @return 返回的 ViewController
  */
 - (instancetype)initWithParams:(NSDictionary *)params;
+
+/**
+  指定 xib 创建 ViewController
+
+ @return xib 名称
+ */
++ (NSString *)nibName;
+
+/**
+ 指定 storyboard 创建 ViewController
+
+ @return storyboard 名称
+ */
++ (NSString *)storyboardName;
+
+/**
+ 指定 bundle 加载 xib / storyboard
+
+ @return bundle
+ */
++ (NSBundle *)customBundle;
 
 @end
 
