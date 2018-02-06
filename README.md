@@ -8,42 +8,43 @@ YFMediator iOS 组件化中间件，新时代的解耦神器 ！
 
 强烈建议配合 [YFRouter](https://github.com/laichanwai/YFRouter) 使用 ！！
 
+## Changelog
+
+- 0.1.4 支持自定义转场动画
+- 0.1.7 初始化赋值由 `perform setter` 改为 `setValue:forKey:`
+- 0.1.8 支持 `Alert` 和 `ActionSheet`
+- 0.1.9 支持多种自定义初始化方式
+
 ## Usage
 
 YFMediator 封装页面常用的跳转方法，基于 UINavigationController
 
-### 设置 NavigationController
+### NavigationController 基类
 
-```objc
-/**
  注册一个 NavigationController 基类
  Mediator 创建的所有 NavigationController 都是这个类的实例
-
- @param navigationClass navigationController
- */
-- (void)registerNavigationController:(Class)navigationClass;
+ 
+```objc
+[YFMediator shared] registerNavigationController:[BVNavigationController class]];
 ```
 
 ### 页面跳转
 
-![2016121772911PushOrPop.gif](http://7xlykq.com1.z0.glb.clouddn.com/2016121772911PushOrPop.gif)
-
 #### Push
 
 ```objc
-/**
- Push 一个 ViewController
- 会通过 className 或者 短链 创建 ViewController
- 
- @param viewController viewController(className | URL)
- @return viewController
- */
-- (UIViewController *)push:(NSString *)viewController;
-- (UIViewController *)push:(NSString *)viewController animate:(BOOL)animate;
-- (UIViewController *)push:(NSString *)viewController animate:(BOOL)animate params:(NSDictionary *)params;
+NSString * const kYFDetailViewController = @"YFDetailViewController";
+
+[[YFMediator shared] push:kYFDetailViewController animate:YES params:@{@"title": @"detail"}];
 ```
 
-#### Pop Dismiss
+#### Present
+
+```objc
+[[YFMediator shared] present:kYFDetailViewController animate:YES params:nil withNavigation:YES];
+```
+
+#### Pop & Dismiss
 
 不管你的 `ViewController` 是通过 `push` 或者 `present` 的方式弹出，调用 `pop` 都可以返回，优先处理 `pop`，如果当前 `ViewController` 已经不能 `pop` 了，则判断能否 `dismiss`
 
@@ -61,23 +62,10 @@ YFMediator 封装页面常用的跳转方法，基于 UINavigationController
 - (UIViewController *)popTo:(NSString *)viewController animate:(BOOL)animate;
 ```
 
-#### Present
-
-```objc
-/**
- Present 一个 ViewController
- 会通过 className 或者 短链 创建 ViewController
- Present 操作默认会创建一个 NavigationController 来管理需要 Present 的 ViewController
- 
- @param viewController viewController(className | URL)
- @return viewController
- */
-- (UIViewController *)present:(NSString *)viewController;
-- (UIViewController *)present:(NSString *)viewController animate:(BOOL)animate;
-- (UIViewController *)present:(NSString *)viewController animate:(BOOL)animate params:(NSDictionary *)params;
-```
-
-![201612179754params.gif](http://7xlykq.com1.z0.glb.clouddn.com/201612179754params.gif)
+<details>
+<summary>页面跳转.gif</summary>
+![2016121772911PushOrPop.gif](http://7xlykq.com1.z0.glb.clouddn.com/2016121772911PushOrPop.gif)
+</details>
 
 ### 参数传递
 
@@ -99,12 +87,18 @@ YFMediator 封装页面常用的跳转方法，基于 UINavigationController
 @end
 
 // push 出来的 ViewController 的 type 值为 1
-[YFMediator push:@"ViewController" params:@{@"type" : @"1"}];
+[[YFMediator shared] push:@"ViewController" animate:YES params:@{@"type" : @"1"}];
 ``` 
 
+<details>
+<summary>参数传递.gif</summary>
 ![201612171222params.gif](http://7xlykq.com1.z0.glb.clouddn.com/201612171222params.gif)
+</details>
+
 
 ### 短链映射（URL 绑定）
+
+*需要注意：URL 绑定功能需要 YFRouter 支持。
 
 ```objc
 @interface YFMediator (YFRouter)
@@ -141,61 +135,57 @@ YFMediator 封装页面常用的跳转方法，基于 UINavigationController
 @end
 ```
 
+
+<details>
+<summary>短链映射.gif</summary>
 ![2016121738971Map.gif](http://7xlykq.com1.z0.glb.clouddn.com/2016121738971Map.gif)
+</details>
+
 
 ### 创建 ViewController
 
-在 `YFMediator` 中所有的 `ViewController` 默认都是通过这个方法创建，它会调用 `init` 方法来创建一个 `ViewController`。
+所有的 `ViewController` 默认都是通过调用 `init` 方法来创建。
 
 ```objc
-/**
- 通过 ViewController 的 className 或者 短链 创建 ViewController
- 可传入参数，默认为 nil
-
- @param viewController viewController(className | URL)
- @return Created ViewController
- */
-- (UIViewController *)viewController:(NSString *)viewController;
-- (UIViewController *)viewController:(NSString *)viewController params:(NSDictionary *)params;
+- (__kindof UIViewController *)viewController:(NSString *)viewController;
+- (__kindof UIViewController *)viewController:(NSString *)viewController params:(NSDictionary *)params;
+- (__kindof UIViewController *)viewController:(NSString *)viewController params:(NSDictionary *)params withNavigation:(BOOL)hasNav;
 ```
 
 #### 自定义创建 ViewController
 
-如果你的 `ViewController` 是通过 `Storyboard` 或者 `Xib` 创建的，或者你需要自定义创建一个 `ViewController`，在 `YFMediator` 有一个协议 `YFMediatorProtocol`，只需要实现协议分方法就可以。
+如果你的 `ViewController` 是通过 `Storyboard` 或者 `Xib` 创建的，或者你需要自定义创建一个 `ViewController`，在 `YFMediator` 有一个协议 `YFMediatorProtocol`，只需要实现协议对应方法就可以。
 
 ```objc
-@protocol YFMediatorProtocol <NSObject>
-
 /**
- 实现这个方法可以自定义创建 ViewController
- 实现这个方法不会触发 YFMediatorInterceptBeforeSetValue 拦截
-
- @param params 传入的参数
- @return 返回的 ViewController
+ 自定义创建 ViewController
+ 
+ - 支持多种方式创建（优先级排序）:
+    + viewControllerWithParams:
+    - initWithParams:
+    + nibName
+    + storyboard
+ 
+ - viewControllerWithParams: 和 initWithParams: 不会触发 YFMediatorInterceptBeforeSetValue 拦截
  */
+@protocol YFMediatorProtocol <NSObject>
++ (instancetype)viewControllerWithParams:(NSDictionary *)params;
 - (instancetype)initWithParams:(NSDictionary *)params;
-
++ (NSString *)nibName;
++ (NSString *)storyboardName;
++ (NSBundle *)customBundle;
 @end
 ```
 
 #### ViewController 拦截器
 
-`YFMediator` 对 `ViewController` 的创建可以进行拦截处理
+对 `ViewController` 的初始化进行拦截处理
 
 1. 可以在 `Intercept Handler` 中修改 `ViewController`(创建之前传递的是 ViewController 的类名)
 2. 可以在修改需要传递的参数 `params` 的类型是 `NSMutableDictionary`
 3. 如果你不想创建这个 `ViewController` 只需要 `return NO`，那么就会终止创建这个 `ViewController` 并且返回 `nil`，默认通过的话请返回 `YES`。
 
 ```objc
-typedef BOOL(^YFMediatorInterceptHandlerBlock)(id *viewController, NSMutableDictionary *params);
-
-typedef enum : NSUInteger {
-    YFMediatorInterceptNotFound,        // handler(className | URL, params)
-    YFMediatorInterceptBeforeInit,      // handler(className | URL, params)
-    YFMediatorInterceptBeforeSetValue,  // handler(viewController, params)，不会拦截实现 YFMediatorProtocol 的 ViewController
-    YFMediatorInterceptAfterInit,       // handler(viewController, params)
-} YFMediatorIntercept;
-
 /**
  拦截操作，在 Mediator 创建 ViewController 的时候触发
  找不到对应的控制器 YFMediatorInterceptNotFound
@@ -209,6 +199,42 @@ typedef enum : NSUInteger {
  @param handler YFMediatorInterceptHandler
  */
  - (void)intercept:(YFMediatorIntercept)option handler:(YFMediatorInterceptHandlerBlock)handler;
+```
+
+#### 转场动画
+
+0.1.4 之后，`YFMediator` 支持转场动画，这会让在开发中更加方便快捷的使用转场动画。
+
+支持 `push`、`present`、`pop` 和 `dismiss`
+
+```objc
+// push & present
+[[YFMediator shared] push:kYFDetailViewController
+                   params:nil
+                 animator:[YFMaterialAnimator expandAnimator]];
+                 
+// pop & dismiss
+[[YFMediator shared] pop:[YFMaterialAnimator shrinkAnimator]];
+```
+
+#### Alert
+
+0.1.8 之后可以快速调起一个 Alert 或者 ActionSheet。
+
+```objc
+[[YFMediator shared] alertWithTitle:@"您确定要退出当前页面吗？" items:@[@"确定"] cancel:@"取消" selected:^(UIAlertAction *action) {
+    if ([action.title isEqualToString:@"确定"]) {
+        [[YFMediator shared] pop];
+    }
+}];
+```
+
+ActionSheet
+
+```objc
+[[YFMediator shared] actionSheetWithItems:@[@"第一个", @"第二个"] cancel:@"取消" selected:^(UIAlertAction *action) {
+    // ...
+}];
 ```
 
 ## Installation
