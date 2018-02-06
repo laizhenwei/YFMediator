@@ -64,7 +64,7 @@ NSString * const kYFDetailViewController = @"YFDetailViewController";
 
 <details>
 <summary>页面跳转.gif</summary>
-![2016121772911PushOrPop.gif](http://7xlykq.com1.z0.glb.clouddn.com/2016121772911PushOrPop.gif)
+<img src="http://7xlykq.com1.z0.glb.clouddn.com/2016121772911PushOrPop.gif">
 </details>
 
 ### 参数传递
@@ -92,7 +92,7 @@ NSString * const kYFDetailViewController = @"YFDetailViewController";
 
 <details>
 <summary>参数传递.gif</summary>
-![201612171222params.gif](http://7xlykq.com1.z0.glb.clouddn.com/201612171222params.gif)
+<img src="http://7xlykq.com1.z0.glb.clouddn.com/201612171222params.gif">
 </details>
 
 
@@ -138,7 +138,7 @@ NSString * const kYFDetailViewController = @"YFDetailViewController";
 
 <details>
 <summary>短链映射.gif</summary>
-![2016121738971Map.gif](http://7xlykq.com1.z0.glb.clouddn.com/2016121738971Map.gif)
+<img src="http://7xlykq.com1.z0.glb.clouddn.com/2016121738971Map.gif">
 </details>
 
 
